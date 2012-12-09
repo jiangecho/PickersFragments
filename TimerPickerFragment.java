@@ -248,7 +248,7 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
       try {
         listener.onTimeSet(timeResult, mView);
       } catch (Exception e) {
-        Log.e("Exception", "TimerPickerFragment must implement OnTimeSetListener");
+        Log.e("Exception", TAG + " must implement OnTimeSetListener");
       }
       break;
     case DialogInterface.BUTTON_NEGATIVE:

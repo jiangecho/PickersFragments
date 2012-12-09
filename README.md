@@ -1,6 +1,14 @@
 # PickersFragments
 
-Android picker fragments compatible with HoloEverywhere. 
+Android picker fragments compatible with HoloEverywhere.
+
+## NumberPickerFragment
+
+### Description
+Display Number picker with a unit
+
+### Screenshots
+![NumberPickerFragment](http://cloud.github.com/downloads/prcaen/PickersFragments/number_picker.png)
 
 ## TimerPickerFragment
 
