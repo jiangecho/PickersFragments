@@ -128,6 +128,7 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
     minsNumberPicker = new NumberPicker(mContext);
     minsNumberPicker.setMaxValue(59);
     minsNumberPicker.setMinValue(1);
+    minsNumberPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
 
     if (mins > 0)
       minsNumberPicker.setValue(mins);
@@ -156,6 +157,7 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
     secondsNumberPicker = new NumberPicker(mContext);
     secondsNumberPicker.setMaxValue(59);
     secondsNumberPicker.setMinValue(0);
+    secondsNumberPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
 
     if (seconds > 0)
       secondsNumberPicker.setValue(seconds);
@@ -194,4 +196,5 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
       break;
     }
   }
+
 }
