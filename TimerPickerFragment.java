@@ -26,17 +26,24 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
   private View               mView;
 
   private String             title;
+  private int                titleId;
   private String             message;
+  private int                messageId;
   private String             positiveButtonText = "Set";
+  private int                positiveButtonId;
   private String             negativeButtonText = "Cancel";
+  private int                negativeButtonId;
   private Drawable           icon;
+  private int                iconId;
+  private String             unitMins           = "m";
+  private int                unitMinsId;
+  private String             unitSeconds        = "s";
+  private int                unitSecondsId;
 
   private int                time;
 
   private NumberPicker       minsNumberPicker;
   private NumberPicker       secondsNumberPicker;
-  private String             unitMins           = "m";
-  private String             unitSeconds        = "s";
 
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -64,54 +71,98 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
     // Set title
     if (!TextUtils.isEmpty(title))
       alertDialogBuilder.setTitle(title);
+    else if (titleId > 0)
+      alertDialogBuilder.setTitle(titleId);
 
     // Set message
     if (!TextUtils.isEmpty(message))
       alertDialogBuilder.setMessage(message);
+    else if (messageId > 0)
+      alertDialogBuilder.setMessage(messageId);
 
     // Set icon
     if (icon != null)
       alertDialogBuilder.setIcon(icon);
+    else if (iconId > 0)
+      alertDialogBuilder.setIcon(iconId);
 
     // Set dialog positive button
-    alertDialogBuilder.setPositiveButton(positiveButtonText, this);
+    if (positiveButtonId > 0)
+      alertDialogBuilder.setPositiveButton(positiveButtonId, this);
+    else
+      alertDialogBuilder.setPositiveButton(positiveButtonText, this);
 
     // Set dialog negative button
-    alertDialogBuilder.setNegativeButton(negativeButtonText, this);
+    if (negativeButtonId > 0)
+      alertDialogBuilder.setNegativeButton(negativeButtonId, this);
+    else
+      alertDialogBuilder.setNegativeButton(negativeButtonText, this);
 
     return alertDialogBuilder.create();
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
   }
 
   public void setTime(int seconds) {
     this.time = seconds;
   }
 
+  public void setView(View v) {
+    this.mView = v;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public void setTitle(int title) {
+    this.titleId = title;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public void setMessage(int message) {
+    this.messageId = message;
+  }
+
   public void setUnitMins(String unitMins) {
     this.unitMins = unitMins;
+  }
+
+  public void setUnitMins(int unitMins) {
+    this.unitMinsId = unitMins;
   }
 
   public void setUnitSeconds(String unitSeconds) {
     this.unitSeconds = unitSeconds;
   }
 
-  public void setView(View v) {
-    this.mView = v;
+  public void setUnitSeconds(int unitSeconds) {
+    this.unitSecondsId = unitSeconds;
   }
 
   public void setPositiveButtonText(String positiveButtonText) {
     this.positiveButtonText = positiveButtonText;
   }
 
+  public void setPositiveButtonText(int positiveButtonText) {
+    this.positiveButtonId = positiveButtonText;
+  }
+
   public void setNegativeButtonText(String negativeButtonText) {
     this.negativeButtonText = negativeButtonText;
+  }
+
+  public void setNegativeButtonText(int negativeButtonText) {
+    this.negativeButtonId = negativeButtonText;
+  }
+
+  public void setDrawable(Drawable drawable) {
+    this.icon = drawable;
+  }
+
+  public void setDrawable(int drawable) {
+    this.iconId = drawable;
   }
 
   public void setOnTimerSetListener(OnTimeSetListener listener) {
@@ -137,7 +188,11 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
 
     // Unit
     TextView unit = new TextView(mContext);
-    unit.setText(unitMins);
+    if (unitMinsId > 0)
+      unit.setText(unitMinsId);
+    else
+      unit.setText(unitMins);
+
     LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     ll.setMargins(25, 0, 25, 0);
     unit.setLayoutParams(ll);
@@ -166,7 +221,12 @@ public class TimerPickerFragment extends DialogFragment implements OnClickListen
 
     // Unit
     TextView unit = new TextView(mContext);
-    unit.setText(unitSeconds);
+
+    if (unitSecondsId > 0)
+      unit.setText(unitSecondsId);
+    else
+      unit.setText(unitSeconds);
+
     LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     ll.setMargins(25, 0, 0, 0);
     unit.setLayoutParams(ll);
