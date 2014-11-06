@@ -75,7 +75,7 @@ public class NumberPickerFragment extends DialogFragment implements OnClickListe
     if (!TextUtils.isEmpty(unit) || unitId != null) {
       TextView unitTextView = new TextView(getActivity());
 
-      if (unitId > 0)
+      if (unitId != null && unitId > 0)
         unitTextView.setText(unitId);
       else
         unitTextView.setText(unit);
